@@ -33,3 +33,6 @@ $ rosbag play src/test/bag/path_test.bag
 ```bash
 $ python3 src/test/scripts/algorithmic_test.py
 ```
+
+## Technical Test no. 2 notes
+- position can be adjust by edit the position.yaml file in config folder

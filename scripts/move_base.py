@@ -19,6 +19,7 @@ class MoveBaseSeq():
         points_seq = rospy.get_param('move_base/p_seq')
         # Only yaw angle required (no ratotions around x and y axes) in deg:
         yaweulerangles_seq = rospy.get_param('move_base/yea_seq')
+        seq = rospy.get_param('move_base/seq')
         #List of goal quaternions:
         quat_seq = list()
         #List of goal poses:
@@ -27,7 +28,7 @@ class MoveBaseSeq():
         for yawangle in yaweulerangles_seq:
             #Unpacking the quaternion tuple and passing it as arguments to Quaternion message constructor
             quat_seq.append(Quaternion(*(quaternion_from_euler(0, 0, yawangle*math.pi/180, axes='sxyz'))))
-        n = 3
+        n = seq
         # Returns a list of lists [[point1], [point2],...[pointn]]
         points = [points_seq[i:i+n] for i in range(0, len(points_seq), n)]
         rospy.loginfo(str(points))
