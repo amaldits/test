@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  test_com:
+    container_name: 'test_com'
+    build:
+      context: .
+      dockerfile: ./Dockerfile.test
+    environment:
+      - name=value
+    restart: 'no'
+    # volumes:
+    #   - ./launch/hybrid-communication-secondary.launch:/opt/ros/melodic/share/mavros/launch/hybrid-communication-secondary.launch
+    # privileged: true

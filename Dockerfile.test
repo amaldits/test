@@ -1,0 +1,25 @@
+FROM ros:noetic-ros-core
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ENV TZ=Asia/Jakarta
+
+RUN apt-get update
+
+RUN mkdir -p /home/tyan/catkin_ws/src/
+
+RUN cd /home/tyan/catkin_ws/src/
+
+RUN apt install git -y
+RUN apt install ros-noetic-catkin python-catkin-tools
+
+RUN git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git -b noetic-devel
+RUN git clone https://github.com/ROBOTIS-GIT/turtlebot3.git -b noetic-devel
+RUN git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+COPY . ~/catkin_ws/src/test
+
+RUN cd /home/tyan/catkin_ws/ && catkin_make
+
+COPY ./scripts-bash/test-entrypoint.sh /test-entrypoint.sh
+RUN chmod +x /test-entrypoint.sh
+CMD ["/test-entrypoint.sh"]

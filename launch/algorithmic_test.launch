@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/tyan/catkin_ws/src/test/bag/path_test.bag"/>
+
+    <node pkg="test" name="algorithmic_test" type="algorithmic_test.py" output="screen"/> 
+</launch>

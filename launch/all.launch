@@ -1,0 +1,7 @@
+<launch>
+
+    <include file="$(find test)/launch/gazebo_navigation_rviz.launch"/>
+    <rosparam command="load" file="$(find test)/config/position.yaml" />
+    <node name="move_base" pkg="test" type="test" output="screen"/>
+
+</launch>
